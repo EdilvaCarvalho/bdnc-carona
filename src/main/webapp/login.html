@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login | Carona</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/estilo.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+                            <span class="sr-only">Toggle navigation</span> 
+                        </button> 
+                        <a class="navbar-brand" href="index.html">Caronas</a>
+                    </div>
+                    <a class="navbar-brand navbar-right" href="login.html">Login</a>
+                </div><!-- /.container -->
+            </nav>
+        </header>
+        <br><br><br>
+        <div class="container text-center">
+            <h2>Login</h2>
+            <br>
+        </div>
+        <div class="container" style="width:30%">
+            <div class="row">
+                <form method="post" id="login" action="Controller?command=Autenticar">
+                    <div class="form-group col-md-12">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" name="senha" id="senha" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <input id="btnCadastrar" type="submit" value="Entrar" class="btn btn-block">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <p style="text-align: center;"><strong>OU</strong></p>
+                        <a id="btnCadastrar" href="cadastroUsuario.html" class="btn btn-block">Crie uma conta</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <h4>Caronas 2017. Todos os direitos reservados</h4>
+        </footer>
+    </body>
+</html>
