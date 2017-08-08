@@ -31,20 +31,20 @@
                             <input type="text" class="form-control" name="origem" id="origem" autofocus required>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat1" id="lat1" required>
+                            <input type="text" class="form-control" name="lat1" id="lat1" required style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng1" id="lng1" required>
+                            <input type="text" class="form-control" name="lng1" id="lng1" required style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="destino">Destino: </label>
                             <input type="text" class="form-control" name="destino" id="destino" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat2" id="lat2" required>
+                            <input type="text" class="form-control" name="lat2" id="lat2" required style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng2" id="lng2" required>
+                            <input type="text" class="form-control" name="lng2" id="lng2" required style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <input type="button" value="Calcular distância e duração" onclick="CalculaDistancia()" id="btnCadastrar" class="btn btn-block"/>
@@ -69,10 +69,6 @@
                             <label for="custo">Ajuda de custo: </label>
                             <input type="text" class="form-control" name="custo" id="custo" required>
                         </div>
-                        <input type="text" class="form-control" name="lat1" id="lat1" style="display: none;">
-                        <input type="text" class="form-control" name="lng1" id="lng1" style="display: none;">
-                        <input type="text" class="form-control" name="lat2" id="lat2" style="display: none;">
-                        <input type="text" class="form-control" name="lng2" id="lng2" style="display: none;">
                         <div class="form-group col-md-12">
                             <input id="btnCadastrar" type="submit" value="Confirmar" class="btn btn-block" onclick="codeAddress()">
                         </div>
@@ -113,8 +109,28 @@
                 var directionsDisplay = new google.maps.DirectionsRenderer;
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 6,
-                    center: {lat: -6.8897, lng: -38.5612}
+                    center: {lat: -34.397, lng: 150.644}
                 });
+                var infoWindow = new google.maps.InfoWindow({map: map});
+
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
                 directionsDisplay.setMap(map);
 
                 var onChangeHandler = function () {
@@ -123,6 +139,13 @@
                 document.getElementById('origem').addEventListener('change', onChangeHandler);
                 document.getElementById('destino').addEventListener('change', onChangeHandler);
 
+            }
+            
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
             }
 
             function calculateAndDisplayRoute(directionsService, directionsDisplay) {

@@ -31,20 +31,20 @@
                             <input type="text" class="form-control" name="origem" id="origem" autofocus required>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat1" id="lat1">
+                            <input type="text" class="form-control" name="lat1" id="lat1" style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng1" id="lng1">
+                            <input type="text" class="form-control" name="lng1" id="lng1" style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="destino">Destino: </label>
                             <input type="text" class="form-control" name="destino" id="destino" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat2" id="lat2" required>
+                            <input type="text" class="form-control" name="lat2" id="lat2" required style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng2" id="lng2" required>
+                            <input type="text" class="form-control" name="lng2" id="lng2" required style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <input type="button" value="Calcular distância e duração" onclick="CalculaDistancia()" id="btnCadastrar" class="btn btn-block"/>

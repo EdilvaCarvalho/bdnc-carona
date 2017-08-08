@@ -32,7 +32,7 @@ public class EditarCarona implements Command{
             carona = dadosDaCarona(request);
 
             CaronaService service = new CaronaServiceImpl();
-            request.setAttribute("pagina", "caronas.jsp");
+            request.setAttribute("pagina", "listarCaronas.jsp");
 
             if (service.editar(carona)) {
                 request.setAttribute("mensagem", "Carona atualizada com sucesso!");

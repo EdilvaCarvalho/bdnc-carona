@@ -34,8 +34,8 @@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Oferecer Carona</a>
                                 <ul class="nav dropdown-menu">
-                                    <li><a href="oferecerCarona.jsp">Oferecer</a></li>
-                                    <li><a href="caronas.jsp">Minhas Ofertas</a></li>
+                                    <li><a href="ofertarCarona.jsp">Oferecer</a></li>
+                                    <li><a href="listarCaronas.jsp">Minhas Ofertas</a></li>
                                 </ul>
                             </li>
                             <li>

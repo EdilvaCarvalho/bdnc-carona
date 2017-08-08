@@ -4,6 +4,7 @@
     Author     : Edilva
 --%>
 
+<%@page import="br.edu.ifpb.bdnc.projeto.entidades.Carona"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="df" uri="/WEB-INF/myTags.tld"%>
 <!DOCTYPE html>
@@ -27,25 +28,36 @@
             <div class="row">
                 <div class="col-md-6">
                     <form method="post" id="oferecerCarona" action="Controller?command=EditarCarona&id=${carona.id}">
+                        <%
+                            Carona carona = (Carona) request.getAttribute("carona");
+                            double lat1 = carona.getOrigem().getCoordinate().x;
+                            double lng1 = carona.getOrigem().getCoordinate().y;
+                            double lat2 = carona.getDestino().getCoordinate().x;
+                            double lng2 = carona.getDestino().getCoordinate().y;
+                            request.setAttribute("lat1", lat1);
+                            request.setAttribute("lng1", lng1);
+                            request.setAttribute("lat2", lat2);
+                            request.setAttribute("lng2", lng2);
+                        %>
                         <div class="form-group col-md-12">
                             <label for="origem">Origem: </label>
                             <input type="text" class="form-control" name="origem" id="origem" autofocus required value="${carona.origemTxt}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat1" id="lat1" required>
+                            <input type="text" class="form-control" name="lat1" id="lat1" value="${lat1}" required style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng1" id="lng1" required>
+                            <input type="text" class="form-control" name="lng1" id="lng1" value="${lng1}" required style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="destino">Destino: </label>
                             <input type="text" class="form-control" name="destino" id="destino" required value="${carona.destinoTxt}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lat2" id="lat2" required>
+                            <input type="text" class="form-control" name="lat2" id="lat2" value="${lat2}" required style="display: none;">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lng2" id="lng2" required>
+                            <input type="text" class="form-control" name="lng2" id="lng2" value="${lng2}" required style="display: none;">
                         </div>
                         <div class="form-group col-md-12">
                             <input type="button" value="Calcular distância e duração" onclick="CalculaDistancia()" id="btnCadastrar" class="btn btn-block"/>
@@ -70,10 +82,6 @@
                             <label for="custo">Ajuda de custo: </label>
                             <input type="text" class="form-control" name="custo" id="custo" value="${carona.ajudaCusto}" required>
                         </div>
-                        <input type="text" class="form-control" name="lat1" id="lat1" style="display: none;">
-                        <input type="text" class="form-control" name="lng1" id="lng1" style="display: none;">
-                        <input type="text" class="form-control" name="lat2" id="lat2" style="display: none;">
-                        <input type="text" class="form-control" name="lng2" id="lng2" style="display: none;">
                         <div class="form-group col-md-12">
                             <input id="btnCadastrar" type="submit" value="Atualizar" class="btn btn-block" onclick="codeAddress()">
                         </div>

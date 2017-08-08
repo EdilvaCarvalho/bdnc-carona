@@ -81,7 +81,7 @@ public class CaronaDaoImpl implements CaronaDAO {
             connection = Conexao.getConnection();
             PreparedStatement ps = connection.prepareStatement("UPDATE carona SET origem = ?, destino = ?, "
                     + "data_viagem = ?, hora_saida = ?, duracao = ?, ajuda_custo = ?, distancia = ?, "
-                    + "origem_txt = ?, destino_txt = ?");
+                    + "origem_txt = ?, destino_txt = ? WHERE id = ?");
             ps.setString(1, new WKTWriter().write(carona.getOrigem()));
             ps.setString(2, new WKTWriter().write(carona.getDestino()));
             ps.setDate(3, Date.valueOf(carona.getDataViagem()));
@@ -91,6 +91,7 @@ public class CaronaDaoImpl implements CaronaDAO {
             ps.setString(7, carona.getDistancia());
             ps.setString(8, carona.getOrigemTxt());
             ps.setString(9, carona.getDestinoTxt());
+            ps.setInt(10, carona.getId());
             ps.executeUpdate();
             ps.close();
             connection.close();
